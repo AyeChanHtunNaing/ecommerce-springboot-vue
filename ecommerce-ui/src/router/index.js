@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Home'
 import AddCategory from "../views/Category/AddCategory";
 import Category from "../views/Category/Category";
 import EditCategory from "../views/Category/EditCategory";

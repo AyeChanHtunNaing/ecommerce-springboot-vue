@@ -4,7 +4,7 @@
       <Navbar />
     </div>
     <div style="min-height: 60vh">
-      <router-view v-if="products && categories"
+      <router-view
          :baseURL="baseURL"
          :products="products"
          :categories="categories"
@@ -16,15 +16,14 @@
 </template>
 
 <script>
-
-const axios = require('axios');
+import axios from 'axios';
+//const axios = require('axios');
 import Navbar from "./components/Navbar.vue"
 import Footer from "./components/Footer.vue"
 
 export default {
   data() {
     return {
-      //baseURL : "https://limitless-lake-55070.herokuapp.com/",
       baseURL : "http://localhost:8080/",
       products : null,
       categories : null
@@ -36,14 +35,15 @@ export default {
     async fetchData() {
       // fetch products
       await axios.get(this.baseURL + "product/")
-              .then(res => this.products = res.data)
-              .catch(err => console.log(err))
+          .then(res => this.products = res.data)
+          .catch(err => console.error(err));
 
-      //fetch categories
+      // fetch categories
       await axios.get(this.baseURL + "category/")
-              .then(res => this.categories = res.data)
-              .catch(err => console.log(err))
+          .then(res => this.categories = res.data)
+          .catch(err => console.error(err));
     }
+
   },
   mounted() {
     this.fetchData();

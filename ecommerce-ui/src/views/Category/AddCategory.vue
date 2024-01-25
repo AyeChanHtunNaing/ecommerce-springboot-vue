@@ -44,31 +44,32 @@ export default {
   },
   methods : {
     async addCategory() {
-      const newCategory = {
-        categoryName : this.categoryName,
-        description : this.description,
-        imageUrl : this.imageURL,
-      };
+      try {
+        const newCategory = {
+          categoryName: this.categoryName,
+          description: this.description,
+          imageUrl: this.imageURL,
+        };
 
-      const baseURL =  "http://localhost:8080/";
+        const baseURL = "http://localhost:8080/";
 
-      await axios({
-        method: 'post',
-        url: baseURL+"category/create",
-        data : JSON.stringify(newCategory),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-          .then(() => {
-            swal({
-              text: "Category Added Successfully!",
-              icon: "success",
-              closeOnClickOutside: false,
-            });
-          })
-          .catch(err => console.log(err));
+        await axios.post(baseURL + "category/create", newCategory, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        swal({
+          text: "Category Added Successfully!",
+          icon: "success",
+          closeOnClickOutside: false,
+        });
+
+      } catch (error) {
+        console.error(error);
+      }
     }
+
   },
   mounted(){
   }
