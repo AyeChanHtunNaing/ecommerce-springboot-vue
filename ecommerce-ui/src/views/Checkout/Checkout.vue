@@ -18,7 +18,7 @@ const axios = require('axios')
 export default {
     data(){
         return {
-            stripeAPIToken: '<Stripe public key>',
+            stripeAPIToken: '><Spe putribli keyc',
             stripe: '',
             token:null,
             sessionId:null,
