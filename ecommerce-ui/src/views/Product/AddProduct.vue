@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h4 class="pt-3">Edit Category</h4>
+        <h4 class="pt-3">Add new Product</h4>
       </div>
     </div>
 
@@ -11,8 +11,14 @@
       <div class="col-md-6 px-5 px-md-0">
         <form>
           <div class="form-group">
-            <label>Category Name</label>
-            <input type="text" class="form-control" v-model="categoryName" required>
+            <label>Category</label>
+            <select class="form-control" v-model="categoryId" required>
+              <option v-for="category of categories" :key="category.id" :value="category.id">{{category.categoryName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" v-model="name" required>
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -20,9 +26,13 @@
           </div>
           <div class="form-group">
             <label>ImageURL</label>
-            <input type="url" class="form-control" v-model="imageUrl" required>
+            <input type="url" class="form-control" v-model="imageURL" required>
           </div>
-          <button type="button" class="btn btn-primary" @click="editCategory">Submit</button>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" class="form-control" v-model="price" required>
+          </div>
+          <button type="button" class="btn btn-primary" @click="addProduct">Submit</button>
         </form>
       </div>
       <div class="col-3"></div>
@@ -31,39 +41,40 @@
 </template>
 
 <script>
-const axios =  require('axios')
+var axios = require('axios')
 import swal from 'sweetalert';
 export default {
   data(){
     return {
-      id : null,
-      categoryName : null,
+      categoryId : null,
+      name : null,
       description : null,
-      imageUrl : null,
-      categoryIndex : null
+      imageURL : null,
+      price : null
     }
   },
   props : ["baseURL", "categories"],
   methods : {
-    async editCategory() {
-      const updatedCategory = {
-        id : this.id,
-        categoryName : this.categoryName,
+    async addProduct() {
+      const newProduct = {
+        categoryId : this.categoryId,
+        name : this.name,
         description : this.description,
-        imageUrl : this.imageUrl,
+        imageURL : this.imageURL,
+        price : this.price
       }
 
       await axios({
         method: 'post',
-        url: this.baseURL+"category/update/"+this.id,
-        data : JSON.stringify(updatedCategory),
+        url: this.baseURL+"product/add",
+        data : JSON.stringify(newProduct),
         headers: {
           'Content-Type': 'application/json'
         }
       })
           .then(() => {
             swal({
-              text: "Category Updated Successfully!",
+              text: "Product Added Successfully!",
               icon: "success",
               closeOnClickOutside: false,
             });
@@ -72,11 +83,6 @@ export default {
     }
   },
   mounted() {
-    this.id = this.$route.params.id;
-    this.category = this.categories.filter(category => category.id == this.id)[0];
-    this.categoryName = this.category.categoryName;
-    this.description = this.category.description;
-    this.imageUrl = this.category.imageUrl;
   }
 }
 </script>
@@ -87,4 +93,5 @@ h4 {
   color: #484848;
   font-weight: 700;
 }
+
 </style>
