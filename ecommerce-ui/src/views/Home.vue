@@ -46,23 +46,27 @@
 import ProductBox from "../components/Product/ProductBox";
 import CategoryBox from "../components/Category/CategoryBox";
 export default {
-  name: 'Home',
-  components : { ProductBox, CategoryBox},
-  props : ["baseURL", "products", "categories"],
-  data(){
-    return{
-      category_size:0,
-      product_size:0
+  name: "Home",
+  components: { ProductBox, CategoryBox },
+  props: ["baseURL", "products", "categories"],
+  data() {
+    return {
+      category_size: 0,
+      product_size: 0,
+    };
+  },
+  mounted() {
+    if (this.categories && Array.isArray(this.categories)) {
+      this.category_size = this.categories.length;
+      this.category_size = Math.min(6, this.category_size);
+    }
+
+    if (this.products && Array.isArray(this.products)) {
+      this.product_size = this.products.length;
+      this.product_size = Math.min(8, this.product_size);
     }
   },
-  mounted(){
-    this.category_size = this.categories.length;
-    this.category_size = Math.min(6, this.category_size);
-
-    this.product_size = this.products.length;
-    this.product_size = Math.min(8, this.category_size);
-  }
-}
+};
 </script>
 
 <style>
