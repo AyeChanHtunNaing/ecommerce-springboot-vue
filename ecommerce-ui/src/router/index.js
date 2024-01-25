@@ -7,6 +7,15 @@ import AddProduct from "../views/Product/AddProduct";
 import Product from "../views/Product/Product";
 import EditProduct from "../views/Product/EditProduct";
 import ShowDetails from "../views/Product/ShowDetails";
+import Signup from "../views/Signup";
+import Signin from "../views/Signin";
+import WishList from "../views/Product/WishList";
+import Cart from "../views/cart/Cart";
+import Success from "../views/payment/Success";
+import Failed from "../views/payment/Failed";
+import Checkout from "../views/Checkout/Checkout";
+import OrderHistory from "../views/order/OrderHistory";
+import OrderDetails from "../views/order/OrderDetails";
 
 const routes = [
   {
@@ -48,7 +57,54 @@ const routes = [
     path : '/product/show/:id',
     name : 'ShowDetails',
     component: ShowDetails
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/signin',
+    name: 'Signin',
+    component: Signin
+  },
+  {
+    path: '/wishlist',
+    name: 'WishList',
+    component: WishList
+  },
+  {
+    path : '/cart',
+    name : 'Cart',
+    component : Cart
+  },
+
+  {
+    path: '/payment/success',
+    name: 'PaymentSuccess',
+    component:Success
+  },
+  {
+    path: '/payment/failed',
+    name: 'FailedPayment',
+    component:Failed
+  },
+  {
+    path : '/checkout',
+    name : 'Checkout',
+    component : Checkout
+  },
+  {
+    path: '/orders',
+    name: 'OrderHistory',
+    component: OrderHistory
+  },
+  {
+    path:'/order/:id',
+    name:'OrderDetails',
+    component: OrderDetails
   }
+
 ];
 
 const router = createRouter({

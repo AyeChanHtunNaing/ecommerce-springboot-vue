@@ -14,17 +14,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    @Bean
+	@Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(getApiInfo())
+        		.apiInfo(getApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.pika.ecommerce"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo getApiInfo() {
+	private ApiInfo getApiInfo() {
         Contact contact = new Contact("pika", "http://peacechan.dev", "contact@peacechan.dev");
         return new ApiInfoBuilder()
                 .title("Ecommerce API")

@@ -5,10 +5,10 @@
     </div>
     <div style="min-height: 60vh">
       <router-view v-if="products && categories"
-                   :baseURL="baseURL"
-                   :products="products"
-                   :categories="categories"
-                   @fetchData = "fetchData">
+         :baseURL="baseURL"
+         :products="products"
+         :categories="categories"
+         @fetchData = "fetchData">
       </router-view>
     </div>
     <Footer />
@@ -24,7 +24,8 @@ import Footer from "./components/Footer.vue"
 export default {
   data() {
     return {
-      baseURL : "https://localhost:9090/",
+      //baseURL : "https://limitless-lake-55070.herokuapp.com/",
+      baseURL : "http://localhost:8080/",
       products : null,
       categories : null
     }
@@ -35,13 +36,13 @@ export default {
     async fetchData() {
       // fetch products
       await axios.get(this.baseURL + "product/")
-          .then(res => this.products = res.data)
-          .catch(err => console.log(err))
+              .then(res => this.products = res.data)
+              .catch(err => console.log(err))
 
       //fetch categories
       await axios.get(this.baseURL + "category/")
-          .then(res => this.categories = res.data)
-          .catch(err => console.log(err))
+              .then(res => this.categories = res.data)
+              .catch(err => console.log(err))
     }
   },
   mounted() {

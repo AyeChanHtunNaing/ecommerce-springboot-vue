@@ -25,7 +25,7 @@ export default {
   components : {CategoryBox},
   data() {
     return {
-      baseURL : "https://localhost:9090/",
+      baseURL : "http://localhost:9090/",
       categories : null,
     }
   },

@@ -16,10 +16,10 @@
 
 <script>
 export default {
-  name : "ProductBox",
-  props : ["product"],
-  methods : {
-  }
+    name : "ProductBox",
+    props : ["product"],
+    methods : {
+    }
 }
 </script>
 

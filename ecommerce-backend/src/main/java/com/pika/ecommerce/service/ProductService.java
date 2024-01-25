@@ -2,6 +2,7 @@ package com.pika.ecommerce.service;
 
 
 import com.pika.ecommerce.dto.product.ProductDto;
+import com.pika.ecommerce.exceptions.ProductNotExistException;
 import com.pika.ecommerce.model.Category;
 import com.pika.ecommerce.model.Product;
 import com.pika.ecommerce.repository.ProductRepository;
@@ -48,4 +49,15 @@ public class ProductService {
         product.setId(productID);
         productRepository.save(product);
     }
+
+
+    public Product getProductById(Integer productId) throws ProductNotExistException {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (!optionalProduct.isPresent())
+            throw new ProductNotExistException("Product id is invalid " + productId);
+        return optionalProduct.get();
+    }
+
+
+
 }

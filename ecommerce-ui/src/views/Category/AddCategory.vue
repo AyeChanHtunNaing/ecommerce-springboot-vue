@@ -50,7 +50,7 @@ export default {
         imageUrl : this.imageURL,
       };
 
-      const baseURL =  "https://localhost:9090/";
+      const baseURL =  "http://localhost:8080/";
 
       await axios({
         method: 'post',

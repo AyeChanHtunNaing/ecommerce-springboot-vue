@@ -16,10 +16,10 @@
 
 <script>
 export default {
-  name : "CategoryBox",
-  props : ["category"],
-  methods : {
-  }
+    name : "CategoryBox",
+    props : ["category"],
+    methods : {
+    }
 }
 </script>
 

@@ -1,4 +1,4 @@
-package com.pika.ecommerce.controller;
+package com.pika.ecommerce.controllers;
 
 
 import com.pika.ecommerce.common.ApiResponse;
@@ -20,17 +20,16 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/category")
-
 public class CategoryController {
 
 	@Autowired
 	private CategoryService categoryService;
 
 	@GetMapping("/")
-	public ResponseEntity<List<Category>> getCategories() {
-		List<Category> body = categoryService.listCategories();
-		return new ResponseEntity<>(body, HttpStatus.OK);
-	}
+    public ResponseEntity<List<Category>> getCategories() {
+        List<Category> body = categoryService.listCategories();
+        return new ResponseEntity<>(body, HttpStatus.OK);
+    }
 
 	@PostMapping("/create")
 	public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody Category category) {
